@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+export BUILD_DIR="$1"
+
+cat $BUILD_DIR/requirements.txt | sed -E "s/^torch==([[:digit:]]\.[[:digit:]]\.[[:digit:]]);/torch==\1+cpu;/" > $BUILD_DIR/requirements.txt
