@@ -4,4 +4,4 @@ set -euo pipefail
 
 export BUILD_DIR="$1"
 
-cat $BUILD_DIR/requirements.txt | sed -E "s/^torch==([[:digit:]]\.[[:digit:]]\.[[:digit:]]);/torch==\1+cpu;/" > $BUILD_DIR/requirements.txt
+cat $BUILD_DIR/requirements.txt | sed -E "s/^torch==([[:digit:]]\.[[:digit:]]\.[[:digit:]]);/torch==\1+cpu;/; /^    --hash=sha256:.+/d" | sed -E 's/ \\$//' > requirements-modified.txt
